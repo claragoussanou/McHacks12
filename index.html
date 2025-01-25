@@ -108,14 +108,16 @@
     }
 
     function endGame(isWin) {
-        //gameOver = true;
-        if (isWin) {
+      gameOver = true;
+      end = true
+        if (end==true) {
             resultElement.textContent = "🎉 Congratulations! You guessed correctly!";
         } else {
             resultElement.textContent = `Game Over. The correct diagnosis was: ${diagnosis}`;
         }
         submitBtn.style.display = "none";
         restartBtn.style.display = "block";
+        //gameOver = true;
 }
 
 
