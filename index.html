@@ -33,14 +33,11 @@
         <ul>
             <li>Best time: <span id="bestTime">--</span>s</li>
             <li>Worst Time: <span id="worstTime">--</span>s</li>
-        </ul></div>
+        </ul>
       </div>
-
+     <button id="restartBtn" class="button" style="display: none;">Play Again</button>
+    </div>
   </section>
-    
-  </div>
-  <button id="restartBtn" class="button" style="display: none;">Play Again</button>
-  </div>
   <footer>
     © 2025 KNOWSIS. Made by Clara Goussanou, Luna Kang, and Nimrat Singh :3. All rights reserved.
   </footer>
@@ -50,88 +47,109 @@
 	const diagnosticSets = [
 	  {
 	    diagnosis: "Flu",
-	    symptoms: ["Fever", "Cough", "Body aches", "Fatigue", "Chills"]
+	    symptoms: ["Fever", "Cough", "Body aches", "Fatigue", "Chills"],
+	    names: ["flu"]
 	  },
 	  {
 	    diagnosis: "Common Cold",
-	    symptoms: ["Runny nose", "Sore throat", "Sneezing", "Mild cough", "Fatigue"]
+	    symptoms: ["Runny nose", "Sore throat", "Sneezing", "Mild cough", "Fatigue"],
+            names: ["common cold", "cold"]
 	  },
 	  {
 	    diagnosis: "Strep Throat",
-	    symptoms: ["Sore throat", "Painful swallowing", "Red, swollen tonsils", "White patches on tonsils", "Fever"]
+	    symptoms: ["Sore throat", "Painful swallowing", "Red, swollen tonsils", "White patches on tonsils", "Fever"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Pneumonia",
-	    symptoms: ["Cough with phlegm", "Fever", "Shortness of breath", "Chest pain", "Fatigue"]
+	    symptoms: ["Cough with phlegm", "Fever", "Shortness of breath", "Chest pain", "Fatigue"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Bronchitis",
-	    symptoms: ["Persistent cough", "Production of mucus", "Fatigue", "Shortness of breath", "Mild fever"]
+	    symptoms: ["Persistent cough", "Production of mucus", "Fatigue", "Shortness of breath", "Mild fever"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Asthma",
-	    symptoms: ["Wheezing", "Shortness of breath", "Chest tightness", "Coughing at night"]
+	    symptoms: ["Wheezing", "Shortness of breath", "Chest tightness", "Coughing at night"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Allergic Rhinitis (Hay Fever)",
-	    symptoms: ["Sneezing", "Runny or stuffy nose", "Itchy eyes, nose, or throat", "Watery eyes"]
+	    symptoms: ["Sneezing", "Runny or stuffy nose", "Itchy eyes, nose, or throat", "Watery eyes"],
+            names: ["allergic rhinitis", "hay fever"]
 	  },
 	  {
 	    diagnosis: "Sinusitis",
-	    symptoms: ["Facial pain or pressure", "Nasal congestion", "Loss of smell", "Cough", "Fatigue"]
+	    symptoms: ["Facial pain or pressure", "Nasal congestion", "Loss of smell", "Cough", "Fatigue"],
+            names: []
 	  },
 	  {
 	    diagnosis: "GERD (Gastroesophageal Reflux Disease)",
-	    symptoms: ["Heartburn", "Regurgitation", "Chest pain", "Difficulty swallowing", "Chronic cough"]
+	    symptoms: ["Heartburn", "Regurgitation", "Chest pain", "Difficulty swallowing", "Chronic cough"],
+	    names: ["gerd", "gastroesophageal reflux disease", "gastroesophageal reflux"]
 	  },
 	  {
 	    diagnosis: "Irritable Bowel Syndrome (IBS)",
-	    symptoms: ["Abdominal pain", "Bloating", "Diarrhea or constipation", "Mucus in stool"]
+	    symptoms: ["Abdominal pain", "Bloating", "Diarrhea or constipation", "Mucus in stool"],
+	    names: ["irritable bowel syndrome", "ibs"]
 	  },
 	  {
 	    diagnosis: "Urinary Tract Infection (UTI)",
-	    symptoms: ["Frequent urge to urinate", "Burning sensation during urination", "Cloudy urine", "Pelvic pain"]
+	    symptoms: ["Frequent urge to urinate", "Burning sensation during urination", "Cloudy urine", "Pelvic pain"],
+	    names: ["urinary tract infection", "uti"]
 	  },
 	  {
 	    diagnosis: "Kidney Stones",
-	    symptoms: ["Severe back or side pain", "Blood in urine", "Nausea", "Frequent urination"]
+	    symptoms: ["Severe back or side pain", "Blood in urine", "Nausea", "Frequent urination"],
+	    names: []
 	  },
 	  {
 	    diagnosis: "Gallstones",
-	    symptoms: ["Intense abdominal pain", "Nausea", "Indigestion", "Jaundice"]
+	    symptoms: ["Intense abdominal pain", "Nausea", "Indigestion", "Jaundice"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Osteoarthritis",
-	    symptoms: ["Joint pain", "Stiffness", "Swelling", "Decreased range of motion"]
+	    symptoms: ["Joint pain", "Stiffness", "Swelling", "Decreased range of motion"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Rheumatoid Arthritis",
-	    symptoms: ["Joint pain", "Swelling", "Morning stiffness", "Fatigue", "Decreased range of motion"]
+	    symptoms: ["Joint pain", "Swelling", "Morning stiffness", "Fatigue", "Decreased range of motion"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Osteoporosis",
-	    symptoms: ["Back pain", "Loss of height", "Stooped posture", "Bone fractures"]
+	    symptoms: ["Back pain", "Loss of height", "Stooped posture", "Bone fractures"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Migraine",
-	    symptoms: ["Throbbing headache", "Nausea", "Sensitivity to light and sound", "Visual disturbances"]
+	    symptoms: ["Throbbing headache", "Nausea", "Sensitivity to light and sound", "Visual disturbances"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Tension Headache",
-	    symptoms: ["Dull headache", "Tightness around the head", "Scalp tenderness"]
+	    symptoms: ["Dull headache", "Tightness around the head", "Scalp tenderness"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Depression",
-	    symptoms: ["Persistent sadness", "Loss of interest", "Fatigue", "Changes in appetite", "Suicidal thoughts"]
+	    symptoms: ["Persistent sadness", "Loss of interest", "Fatigue", "Changes in appetite", "Suicidal thoughts"],
+            names: []
 	  },
 	  {
 	    diagnosis: "Anxiety Disorders",
-	    symptoms: ["Excessive worry", "Restlessness", "Fatigue", "Difficulty concentrating", "Physical symptoms like rapid heartbeat"]
+	    symptoms: ["Excessive worry", "Restlessness", "Fatigue", "Difficulty concentrating", "Physical symptoms like rapid heartbeat"],
+            names: ["anxiety disorder"]
 	  }
 	];
 
     let currentDiagnosis = "";
     let currentSymptoms = [];
+    let possibleNames = [];
     let currentSymptomIndex = 0;
     let timer = 60;
     let gameOver = false;
@@ -161,6 +179,7 @@
       const selectedSet = diagnosticSets[randomIndex];
       currentDiagnosis = selectedSet.diagnosis;
       currentSymptoms = [...selectedSet.symptoms];
+      possibleNames = [...selectedSet.names];
       shuffleArray(currentSymptoms); // Randomize symptom order
       currentSymptomIndex = 0;
     }
@@ -212,6 +231,26 @@
       }, 5000); // Add a new symptom every 10 seconds
     }
 
+    function updateTimes() {
+      if (previousTimes.length === 1) {
+        bestTime.textContent = `${previousTimes[0]}`;
+        worstTime.textContent = `${previousTimes[0]}`;
+      } else if (previousTimes.length > 1) {
+	best = 61;
+	worst = -1;
+	for (let i = 0; i < previousTimes.length; i++) {
+	  if (previousTimes[i] < best) {
+	    best = previousTimes[i];
+	  }
+	  if (previousTimes[i] > worst) {
+	    worst = previousTimes[i];
+	  }
+	}
+	bestTime.textContent = `${best}`;
+	worstTime.textContent = `${worst}`;
+      }
+    }
+
     function endGame(isWin) {
       gameOver = true;
       if (isWin) {
@@ -223,6 +262,7 @@
       }
       submitBtn.style.display = "none";
       restartBtn.style.display = "block";
+      updateTimes();
       // diagnosisInput.addEventListener("keydown", function(event) {
 	// if (event.key === "Enter") {
             // event.preventDefault();
@@ -253,7 +293,7 @@
       guessItem.style.backgroundColor = "crimson";
       guessItem.style.borderColor = "maroon";
 
-      if (userInput === currentDiagnosis.toLowerCase()) {
+      if (userInput === currentDiagnosis.toLowerCase() || possibleNames.includes(userInput)) {
         // Highlight correct guess box in green
         guessItem.style.backgroundColor = "lightgreen";
         guessItem.style.borderColor = "green";
