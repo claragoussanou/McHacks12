@@ -35,20 +35,89 @@
 
   <script>
     // Diagnostic sets (diagnosis + symptoms)
-    const diagnosticSets = [
-      {
-        diagnosis: "Flu",
-        symptoms: ["Fever", "Cough", "Body aches", "Fatigue", "Chills"]
-      },
-      {
-        diagnosis: "Cold",
-        symptoms: ["Runny nose", "Cough", "Sore throat", "Sneezing", "Fatigue"]
-      },
-      {
-        diagnosis: "Covid-19",
-        symptoms: ["Fever", "Cough", "Loss of taste", "Fatigue", "Shortness of breath"]
-      }
-    ];
+	const diagnosticSets = [
+	  {
+	    diagnosis: "Flu",
+	    symptoms: ["Fever", "Cough", "Body aches", "Fatigue", "Chills"]
+	  },
+	  {
+	    diagnosis: "Common Cold",
+	    symptoms: ["Runny nose", "Sore throat", "Sneezing", "Mild cough", "Fatigue"]
+	  },
+	  {
+	    diagnosis: "Strep Throat",
+	    symptoms: ["Sore throat", "Painful swallowing", "Red, swollen tonsils", "White patches on tonsils", "Fever"]
+	  },
+	  {
+	    diagnosis: "Pneumonia",
+	    symptoms: ["Cough with phlegm", "Fever", "Shortness of breath", "Chest pain", "Fatigue"]
+	  },
+	  {
+	    diagnosis: "Bronchitis",
+	    symptoms: ["Persistent cough", "Production of mucus", "Fatigue", "Shortness of breath", "Mild fever"]
+	  },
+	  {
+	    diagnosis: "Asthma",
+	    symptoms: ["Wheezing", "Shortness of breath", "Chest tightness", "Coughing at night"]
+	  },
+	  {
+	    diagnosis: "Allergic Rhinitis (Hay Fever)",
+	    symptoms: ["Sneezing", "Runny or stuffy nose", "Itchy eyes, nose, or throat", "Watery eyes"]
+	  },
+	  {
+	    diagnosis: "Sinusitis",
+	    symptoms: ["Facial pain or pressure", "Nasal congestion", "Loss of smell", "Cough", "Fatigue"]
+	  },
+	  {
+	    diagnosis: "GERD (Gastroesophageal Reflux Disease)",
+	    symptoms: ["Heartburn", "Regurgitation", "Chest pain", "Difficulty swallowing", "Chronic cough"]
+	  },
+	  {
+	    diagnosis: "Irritable Bowel Syndrome (IBS)",
+	    symptoms: ["Abdominal pain", "Bloating", "Diarrhea or constipation", "Mucus in stool"]
+	  },
+	  {
+	    diagnosis: "Urinary Tract Infection (UTI)",
+	    symptoms: ["Frequent urge to urinate", "Burning sensation during urination", "Cloudy urine", "Pelvic pain"]
+	  },
+	  {
+	    diagnosis: "Kidney Stones",
+	    symptoms: ["Severe back or side pain", "Blood in urine", "Nausea", "Frequent urination"]
+	  },
+	  {
+	    diagnosis: "Gallstones",
+	    symptoms: ["Intense abdominal pain", "Nausea", "Indigestion", "Jaundice"]
+	  },
+	  {
+	    diagnosis: "Osteoarthritis",
+	    symptoms: ["Joint pain", "Stiffness", "Swelling", "Decreased range of motion"]
+	  },
+	  {
+	    diagnosis: "Rheumatoid Arthritis",
+	    symptoms: ["Joint pain", "Swelling", "Morning stiffness", "Fatigue", "Decreased range of motion"]
+	  },
+	  {
+	    diagnosis: "Osteoporosis",
+	    symptoms: ["Back pain", "Loss of height", "Stooped posture", "Bone fractures"]
+	  },
+	  {
+	    diagnosis: "Migraine",
+	    symptoms: ["Throbbing headache", "Nausea", "Sensitivity to light and sound", "Visual disturbances"]
+	  },
+	  {
+	    diagnosis: "Tension Headache",
+	    symptoms: ["Dull headache", "Tightness around the head", "Scalp tenderness"]
+	  },
+	  {
+	    diagnosis: "Depression",
+	    symptoms: ["Persistent sadness", "Loss of interest", "Fatigue", "Changes in appetite", "Suicidal thoughts"]
+	  },
+	  {
+	    diagnosis: "Anxiety Disorders",
+	    symptoms: ["Excessive worry", "Restlessness", "Fatigue", "Difficulty concentrating", "Physical symptoms like rapid heartbeat"]
+	  }
+	];
+
 
     let currentDiagnosis = "";
     let currentSymptoms = [];
