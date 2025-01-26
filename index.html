@@ -146,7 +146,7 @@
     const submitBtn = document.getElementById("submitBtn");
     const restartBtn = document.getElementById("restartBtn");
     const stopBtn = document.getElementById("stopBtn");
-    const previousTimes(0);
+    const previousTimes = new Array(0);
 
     // Display all possible diagnoses
     const diagnosisList = document.getElementById("diagnosisList");
@@ -213,20 +213,28 @@
       }, 5000); // Add a new symptom every 10 seconds
     }
 
+    funtion updateTime() {
+      
+
+
+    }
+
     function endGame(isWin) {
       gameOver = true;
       if (isWin) {
         resultElement.textContent = "🎉 Congratulations! You guessed correctly!";
+        timeTaken = 60 - timer;
+        previousTimes.push(timeTaken);
       } else {
         resultElement.textContent = `Game Over. The correct diagnosis was: ${currentDiagnosis}`;
       }
       submitBtn.style.display = "none";
       restartBtn.style.display = "block";
-      diagnosisInput.addEventListener("keydown", function(event) {
-	if (event.key === "Enter") {
-            submitBtn.click();
-	}
-      });
+      // diagnosisInput.addEventListener("keydown", function(event) {
+	// if (event.key === "Enter") {
+            // event.preventDefault();
+	//}
+      //});
     }
 
     function clearMessage() {
