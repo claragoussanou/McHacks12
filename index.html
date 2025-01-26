@@ -7,19 +7,20 @@
   <link href="./styles.css" rel="stylesheet">
 </head>
 <body>
-  <section class="s1">
   <h1>Medical Diagnostic Game</h1>
-  </section>
-  <section class="s2">
   <div id="game" class="card">
     <div class="timer">Time Remaining: <span id="timer">60</span>s</div>
     <div class="symptom-container" id="symptomContainer"></div>
     <input type="text" id="diagnosisInput" class="input" placeholder="Enter your diagnosis" />
     <button id="submitBtn" class="button">Submit</button>
     <div id="result" class="result"></div>
+    <div id="guessTracker" class="card">
+      <h3>Past Guesses:</h3>
+      <ul id="guessesList"></ul>
+    </div>
+    
   </div>
   <button id="restartBtn" class="button" style="display: none;">Play Again</button>
-  </section>
 
   <script>
     // Diagnostic sets (diagnosis + symptoms)
@@ -121,18 +122,34 @@
 
     submitBtn.addEventListener("click", () => {
       const userInput = diagnosisInput.value.trim().toLowerCase();
+
+      if (!userInput) return; // Prevent empty input
+      const existingGuesses = Array.from(guessesList.children).map(guess => guess.textContent.toLowerCase());
+
+      if (existingGuesses.includes(userInput)) {
+        resultElement.textContent = "You've already guessed that :p";
+        return; // Skip if guess already exists
+      }
+
+      // Add new guess to the list
+      const guessItem = document.createElement("li");
+      guessItem.textContent = diagnosisInput.value.trim(); // Keep original case for display
+      guessesList.appendChild(guessItem);
+      guessItem.style.backgroundColor = "crimson";
+      guessItem.style.borderColor = "maroon";
+
       if (userInput === currentDiagnosis.toLowerCase()) {
-        endGame(true); // Correct diagnosis
+        // Highlight correct guess box in green
+        guessItem.style.backgroundColor = "lightgreen";
+        guessItem.style.borderColor = "green";
+        endGame(true);
       } else {
         resultElement.textContent = "Incorrect, try again!";
-	setTimeout(clearMessage, 2500);
       }
+
+      diagnosisInput.value = ""; // Clear input
     });
 
-
-    function clearMessage() {
-	resultElement.textContent = "";
-    }
 
     diagnosisInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
@@ -148,6 +165,7 @@
       submitBtn.style.display = "block";
       restartBtn.style.display = "none";
       symptomContainer.innerHTML = ""; // Clear symptoms
+      document.getElementById("guessesList").innerHTML = ""; // Clear past guesses
       timerElement.textContent = timer;
       selectRandomDiagnosticSet();
       startTimer();
