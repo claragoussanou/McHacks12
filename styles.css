@@ -57,7 +57,8 @@ body {
 }
 
 .symptom-box {
-      color: #dddddd;
+      color: #000000;
+      background-color: #f0f0f0;
       border: 1px solid #ddd;
       border-radius: 5px;
       padding: 10px;
@@ -141,7 +142,7 @@ h1 {
       background-color: #fffffffd;
 }
 
-.s1, .symptom-box {
+.s1 {
       background-color: #000;
 }
 
