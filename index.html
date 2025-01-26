@@ -147,6 +147,8 @@
     const restartBtn = document.getElementById("restartBtn");
     const stopBtn = document.getElementById("stopBtn");
     const previousTimes = new Array(0);
+    const bestTime = document.getElementById("bestTime");
+    const worstTime = document.getElementById("worstTime");
 
     // Display all possible diagnoses
     const diagnosisList = document.getElementById("diagnosisList");
@@ -213,10 +215,15 @@
       }, 5000); // Add a new symptom every 10 seconds
     }
 
-    funtion updateTime() {
-      
-
-
+    funtion updateTimes() {
+      if (previousTimes.length == 1) {
+	bestTime.textContent = "${previousTimes[0]}";
+	worstTime.textContent = "${previousTimes[0]}";
+      } else if (previousTimes.length > 1) {
+		
+	
+	for loops
+      }
     }
 
     function endGame(isWin) {
@@ -235,6 +242,7 @@
             // event.preventDefault();
 	//}
       //});
+      updateTimes();
     }
 
     function clearMessage() {
