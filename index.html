@@ -24,10 +24,18 @@
       <div class="symptom-container" id="symptomContainer"></div>
       <input type="text" id="diagnosisInput" class="input" placeholder="Enter your diagnosis" />
       <button id="submitBtn" class="button">Submit</button>
+      <button id="starBtn" class="button" style="background-color: gold;">⭐ Mark as Difficult</button>
+
       <div id="result" class="result"></div>
       <div id="guessTracker" class="card">
         <h3>Past Guesses:</h3>
         <ul id="guessesList"></ul></div>
+	    
+      <div id="difficultyTracker" class="card" style="margin-top: 20px;">
+        <h3>Difficult Concepts:</h3>
+        <ul id="difficultyList" style="list-style-type: none; padding: 0;"></ul>
+      </div>
+
       <div id="records" class="card">
         <h3>Stats</h3>
         <ul>
@@ -164,6 +172,10 @@
     const previousTimes = new Array(0);
     const bestTime = document.getElementById("bestTime");
     const worstTime = document.getElementById("worstTime");
+	  
+    const starBtn = document.getElementById("starBtn");
+    const difficultyList = document.getElementById("difficultyList");
+    let difficultySet = new Set(); // Permanent storage for marked diagnoses
 
     // Display all possible diagnoses
     const diagnosisList = document.getElementById("diagnosisList");
@@ -313,6 +325,25 @@
         }
     });
 
+    starBtn.addEventListener("click", () => {
+  if (currentDiagnosis && !difficultySet.has(currentDiagnosis)) {
+    difficultySet.add(currentDiagnosis); // Add to the set
+    updateDifficultyList(); // Update the visual list
+    starBtn.textContent = "⭐ Marked as Difficult";
+    starBtn.disabled = true; // Disable after marking
+  }
+});
+
+function updateDifficultyList() {
+  difficultyList.innerHTML = ""; // Clear the current list
+
+  // Add each diagnosis in the set to the list
+  difficultySet.forEach((diagnosis) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = diagnosis;
+    difficultyList.appendChild(listItem);
+  });
+}
 
     restartBtn.addEventListener("click", () => {
       timer = 60;
@@ -327,6 +358,10 @@
       selectRandomDiagnosticSet();
       startTimer();
       showSymptomsPeriodically();
+
+      starBtn.textContent = "⭐ Mark as Difficult";
+      starBtn.disabled = false;
+
     });
 
     // Initialize game
