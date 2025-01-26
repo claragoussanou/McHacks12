@@ -89,4 +89,31 @@ h1 {
   
 }
 
+#guessTracker {
+      margin-top: 20px;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+#guessesList {
+      display: flex; /* Enable horizontal layout */
+      flex-wrap: wrap; /* Allow wrapping to the next row if necessary */
+      gap: 10px; /* Add space between guesses */
+      padding: 0;
+      list-style-type: none;
+      margin: 0;
+    }
+    
+#guessesList li {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      font-size: 14px;
+      white-space: nowrap; /* Prevent breaking words */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
