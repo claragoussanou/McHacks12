@@ -7,7 +7,10 @@
   <link href="./styles.css" rel="stylesheet">
 </head>
 <body>
+  <section class="s1">
   <h1>Medical Diagnostic Game</h1>
+  </section>
+  <section class="s2">
   <div id="game" class="card">
     <div class="timer">Time Remaining: <span id="timer">60</span>s</div>
     <div class="symptom-container" id="symptomContainer"></div>
@@ -16,6 +19,7 @@
     <div id="result" class="result"></div>
   </div>
   <button id="restartBtn" class="button" style="display: none;">Play Again</button>
+  </section>
 
   <script>
     // Diagnostic sets (diagnosis + symptoms)
@@ -121,8 +125,14 @@
         endGame(true); // Correct diagnosis
       } else {
         resultElement.textContent = "Incorrect, try again!";
+	setTimeout(clearMessage, 2500);
       }
     });
+
+
+    function clearMessage() {
+	resultElement.textContent = "";
+    }
 
     diagnosisInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
