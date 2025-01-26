@@ -199,3 +199,22 @@ footer {
       color: #6c757d;
 }
 
+#difficultyTracker {
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+#difficultyList li {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      margin-bottom: 5px;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
