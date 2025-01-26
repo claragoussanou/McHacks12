@@ -31,6 +31,7 @@ body {
       background-color: #0056b3;
 }
 
+
 .symptom-box, .input {
       width: 96%;
       justify-content: center;
@@ -77,7 +78,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 20vw;
+  height: 15vw;
   min-height: 80px;
   justify-content: center;
   align-items: center;
@@ -126,6 +127,16 @@ h1 {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+#records {
+      margin-top: 20px;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .card {
       background-color: #fffffffd;
 }
@@ -137,3 +148,54 @@ h1 {
 h1 {
       font-size: 80px;
 }
+
+
+/* New Sidebar Styling */
+.sidebar {
+      width: 250px; /* Sidebar width */
+      min-height: 100vh; /* Full height */
+      background-color: #f5f5f5; /* Sidebar background */
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+}
+
+.sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+}
+
+.sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+}
+
+.sidebar li {
+      flex-wrap: wrap; /* Wrap to the next line if necessary */
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #e16c9b;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      cursor: pointer;
+}
+
+.sidebar li:hover {
+      background-color: #f0f0f0;
+}
+
+footer {
+      width: 100%;
+      background-color: #f8f9fa;
+      padding: 10px 0;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+      color: #6c757d;
+}
+
