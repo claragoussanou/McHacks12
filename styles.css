@@ -66,3 +66,27 @@ body {
 .result {
   margin-top: 5px;
 }
+
+.s1 {
+  width: 100vw;
+  height: 7vw;
+  min-height: 80px;
+  text-align: center;
+  vertical-align: center;
+  border: 2px dashed red;
+  background-color: #001120;
+  color: #dddddd;
+  font-size: 20px;
+  margin-top: -28px;
+  margin-bottom: 35px;
+}
+
+h1 {
+  margin: auto;
+}
+
+.s2 {
+  
+}
+
+
