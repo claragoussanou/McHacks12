@@ -1,17 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charSet="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Medical Diagnostic Game</title>
-  <link href="./styles.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .timer, .result {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .symptom-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .symptom-box {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      font-size: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
   <h1>Medical Diagnostic Game</h1>
   <div id="game" class="card">
     <div class="timer">Time Remaining: <span id="timer">60</span>s</div>
-    <div class="symptom-list">Current Symptoms:</div>
-    <div id="symptom" class="symptom">Loading Symptoms...</div>
+    <div class="symptom-container" id="symptomContainer"></div>
     <input type="text" id="diagnosisInput" class="input" placeholder="Enter your diagnosis" />
     <button id="submitBtn" class="button">Submit</button>
     <div id="result" class="result"></div>
@@ -19,27 +73,58 @@
   <button id="restartBtn" class="button" style="display: none;">Play Again</button>
 
   <script>
-    const symptoms = ["Fever", "Cough", "Body aches", "Fatigue"];
-    const diagnosis = "Flu";
+    // Diagnostic sets (diagnosis + symptoms)
+    const diagnosticSets = [
+      {
+        diagnosis: "Flu",
+        symptoms: ["Fever", "Cough", "Body aches", "Fatigue", "Chills"]
+      },
+      {
+        diagnosis: "Cold",
+        symptoms: ["Runny nose", "Cough", "Sore throat", "Sneezing", "Fatigue"]
+      },
+      {
+        diagnosis: "Covid-19",
+        symptoms: ["Fever", "Cough", "Loss of taste", "Fatigue", "Shortness of breath"]
+      }
+    ];
+
+    let currentDiagnosis = "";
+    let currentSymptoms = [];
     let currentSymptomIndex = 0;
     let timer = 60;
     let gameOver = false;
 
     const timerElement = document.getElementById("timer");
-    const symptomElement = document.getElementById("symptom");
+    const symptomContainer = document.getElementById("symptomContainer");
     const resultElement = document.getElementById("result");
     const diagnosisInput = document.getElementById("diagnosisInput");
     const submitBtn = document.getElementById("submitBtn");
     const restartBtn = document.getElementById("restartBtn");
-    const symptomListElement = document.querySelector('.symptom-list');
 
-    function updateSymptom() {
-      if (currentSymptomIndex < symptoms.length) {
-        const newSymptom = document.createElement('div');
-        newSymptom.classList.add('symptom-box');
-        newSymptom.textContent = symptoms[currentSymptomIndex];
-        symptomListElement.appendChild(newSymptom);
+    // Randomly select a diagnostic set
+    function selectRandomDiagnosticSet() {
+      const randomIndex = Math.floor(Math.random() * diagnosticSets.length);
+      const selectedSet = diagnosticSets[randomIndex];
+      currentDiagnosis = selectedSet.diagnosis;
+      currentSymptoms = [...selectedSet.symptoms];
+      shuffleArray(currentSymptoms); // Randomize symptom order
+      currentSymptomIndex = 0;
+    }
+
+    // Shuffle array for random symptom order
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
       }
+    }
+
+    function addSymptomToScreen(symptom) {
+      const symptomBox = document.createElement("div");
+      symptomBox.className = "symptom-box";
+      symptomBox.textContent = symptom;
+      symptomContainer.appendChild(symptomBox);
     }
 
     function startTimer() {
@@ -47,70 +132,71 @@
         if (timer > 0 && !gameOver) {
           timer--;
           timerElement.textContent = timer;
-        } else if (timer > 0 && gameOver) { 
-	  clearInterval(interval);
-	}
-	else {
+        }
+        else if (timer>0 &&gameOver) {
+          clearInterval(interval);
+        } else {
           clearInterval(interval);
           endGame(false);
         }
       }, 1000);
     }
 
+    function showSymptomsPeriodically() {
+      // Display the first symptom immediately
+      if (currentSymptomIndex < currentSymptoms.length) {
+        addSymptomToScreen(currentSymptoms[currentSymptomIndex]);
+        currentSymptomIndex++;
+      }
+      // Add new symptoms every 10 seconds
+      const symptomInterval = setInterval(() => {
+        if (currentSymptomIndex < currentSymptoms.length && !gameOver) {
+          addSymptomToScreen(currentSymptoms[currentSymptomIndex]);
+          currentSymptomIndex++;
+        } else {
+          clearInterval(symptomInterval);
+        }
+      }, 5000); // Add a new symptom every 10 seconds
+    }
+
     function endGame(isWin) {
       gameOver = true;
-        if (isWin) {
-            resultElement.textContent = "🎉 Congratulations! You guessed correctly!";
-        } else {
-            resultElement.textContent = `Game Over. The correct diagnosis was: ${diagnosis}`;
-        }
-        submitBtn.style.display = "none";
-        restartBtn.style.display = "block";
-        //gameOver = true;
-}
-
+      if (isWin) {
+        resultElement.textContent = "🎉 Congratulations! You guessed correctly!";
+      } else {
+        resultElement.textContent = `Game Over. The correct diagnosis was: ${currentDiagnosis}`;
+      }
+      submitBtn.style.display = "none";
+      restartBtn.style.display = "block";
+    }
 
     submitBtn.addEventListener("click", () => {
-        const userInput = diagnosisInput.value.trim().toLowerCase();
-        if (userInput === diagnosis.toLowerCase()) {
-            endGame(true);  // Correct diagnosis
-        } else {
-            resultElement.textContent = "Incorrect, try again!";
-    }
-});
-
-
-    diagnosisInput.addEventListener("keydown", function(event) {
-	if (event.key === "Enter") {
-	    submitBtn.click();
-	}
+      const userInput = diagnosisInput.value.trim().toLowerCase();
+      if (userInput === currentDiagnosis.toLowerCase()) {
+        endGame(true); // Correct diagnosis
+      } else {
+        resultElement.textContent = "Incorrect, try again!";
+      }
     });
-
 
     restartBtn.addEventListener("click", () => {
       timer = 60;
-      currentSymptomIndex = 0;
       gameOver = false;
       resultElement.textContent = "";
       diagnosisInput.value = "";
       submitBtn.style.display = "block";
       restartBtn.style.display = "none";
+      symptomContainer.innerHTML = ""; // Clear symptoms
       timerElement.textContent = timer;
-      symptomListElement.innerHTML = 'Current Symptoms:';
-      updateSymptom();
+      selectRandomDiagnosticSet();
       startTimer();
+      showSymptomsPeriodically();
     });
 
     // Initialize game
-    updateSymptom();
+    selectRandomDiagnosticSet();
     startTimer();
-
-    setInterval(() => {
-      if (!gameOver && currentSymptomIndex < symptoms.length - 1) {
-        currentSymptomIndex++;
-        updateSymptom();
-      }
-    }, 15000);
+    showSymptomsPeriodically();
   </script>
 </body>
 </html>
