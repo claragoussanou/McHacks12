@@ -11,31 +11,39 @@
     <h1>KNOWSIS</h1>
     <h2>Medical Diagnostic Game</h2>
   </section>
-  
-  
-  <div class="main-container">
-    <aside class="sidebar">
-	<h3>Stats</h3>
-	<p>Best Time: <span id="bestTime">--</span>s</p>
-	<p>Worst Time: <span id="worstTime">--</span>s</p>
-    </aside>
-
 
   <section class="s2">
-  <div id="game" class="Card">
-    <div class="timer">Time Remaining: <span id="timer">60</span>s</div>
-    <div class="symptom-container" id="symptomContainer"></div>
-    <input type="text" id="diagnosisInput" class="input" placeholder="Enter your diagnosis" />
-    <button id="submitBtn" class="button">Submit</button>
-    <div id="result" class="result"></div>
-    <div id="guessTracker" class="card">
-      <h3>Past Guesses:</h3>
-      <ul id="guessesList"></ul>
-    </div>
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+      <h3>Possible Diagnoses</h3>
+      <ul id="diagnosisList" class="diagnosis-list"></ul>
+  </div>
+  
+    <div id="game" class="Card">
+      <div class="timer">Time Remaining: <span id="timer">60</span>s</div>
+      <div class="symptom-container" id="symptomContainer"></div>
+      <input type="text" id="diagnosisInput" class="input" placeholder="Enter your diagnosis" />
+      <button id="submitBtn" class="button">Submit</button>
+      <div id="result" class="result"></div>
+      <div id="guessTracker" class="card">
+        <h3>Past Guesses:</h3>
+        <ul id="guessesList"></ul></div>
+      <div id="records" class="card">
+        <h3>Stats</h3>
+        <ul>
+            <li>Best time: <span id="bestTime">--</span>s</li>
+            <li>Worst Time: <span id="worstTime">--</span>s</li>
+        </ul></div>
+      </div>
+
   </section>
     
   </div>
   <button id="restartBtn" class="button" style="display: none;">Play Again</button>
+  </div>
+  <footer>
+    © 2025 KNOWSIS. Made by Clara Goussanou, Luna Kang, and Nimrat Singh :3. All rights reserved.
+  </footer>
 
   <script>
     // Diagnostic sets (diagnosis + symptoms)
@@ -122,7 +130,6 @@
 	  }
 	];
 
-
     let currentDiagnosis = "";
     let currentSymptoms = [];
     let currentSymptomIndex = 0;
@@ -135,6 +142,15 @@
     const diagnosisInput = document.getElementById("diagnosisInput");
     const submitBtn = document.getElementById("submitBtn");
     const restartBtn = document.getElementById("restartBtn");
+    const stopBtn = document.getElementById("stopBtn");
+
+    // Display all possible diagnoses
+    const diagnosisList = document.getElementById("diagnosisList");
+    diagnosticSets.forEach(set => {
+      const listItem = document.createElement("li");
+      listItem.textContent = set.diagnosis;
+      diagnosisList.appendChild(listItem);
+    });
 
     // Randomly select a diagnostic set
     function selectRandomDiagnosticSet() {
