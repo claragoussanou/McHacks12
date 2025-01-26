@@ -1,5 +1,5 @@
 body {
-      font-family: Arial, sans-serif;
+      font-family: tahoma, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -7,13 +7,14 @@ body {
       margin: 0;
 }
 
-.card {
+.Card {
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 20px;
       max-width: 600px;
       width: 100%;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #fddbed;
 }
 
 .button {
@@ -55,7 +56,7 @@ body {
 }
 
 .symptom-box {
-      background-color: #f0f0f0;
+      color: #dddddd;
       border: 1px solid #ddd;
       border-radius: 5px;
       padding: 10px;
@@ -75,12 +76,11 @@ body {
 .s1 {
   display: flex;
   width: 100vw;
-  height: 7vw;
+  height: 20vw;
   min-height: 80px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #001120;
   color: #dddddd;
   font-size: 20px;
   margin-bottom: 35px;
@@ -107,7 +107,7 @@ h1 {
 }
 
 #guessesList {
-      display: flex; /* Enable horizontal layout */
+      display: flex;
       flex-wrap: wrap; /* Allow wrapping to the next row if necessary */
       gap: 10px; /* Add space between guesses */
       padding: 0;
@@ -123,4 +123,16 @@ h1 {
       font-size: 14px;
       white-space: nowrap; /* Prevent breaking words */
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+      background-color: #fffffffd;
+}
+
+.s1, .symptom-box {
+      background-color: #000;
+}
+
+h1 {
+      font-size: 40px;
 }
