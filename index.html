@@ -11,7 +11,7 @@
   <div id="game" class="card">
     <div class="timer">Time Remaining: <span id="timer">60</span>s</div>
     <div class="symptom-list">Current Symptoms:</div>
-    <div id="symptom" class="symptom">Loading...</div>
+    <div id="symptom" class="symptom">Loading Symptoms...</div>
     <input type="text" id="diagnosisInput" class="input" placeholder="Enter your diagnosis" />
     <button id="submitBtn" class="button">Submit</button>
     <div id="result" class="result"></div>
@@ -47,7 +47,10 @@
         if (timer > 0 && !gameOver) {
           timer--;
           timerElement.textContent = timer;
-        } else {
+        } else if (timer > 0 && gameOver) { 
+	  clearInterval(interval);
+	}
+	else {
           clearInterval(interval);
           endGame(false);
         }
@@ -56,8 +59,7 @@
 
     function endGame(isWin) {
       gameOver = true;
-      end = true
-        if (end==true) {
+        if (isWin) {
             resultElement.textContent = "🎉 Congratulations! You guessed correctly!";
         } else {
             resultElement.textContent = `Game Over. The correct diagnosis was: ${diagnosis}`;
@@ -76,6 +78,13 @@
             resultElement.textContent = "Incorrect, try again!";
     }
 });
+
+
+    diagnosisInput.addEventListener("keydown", function(event) {
+	if (event.key === "Enter") {
+	    submitBtn.click();
+	}
+    });
 
 
     restartBtn.addEventListener("click", () => {
