@@ -124,6 +124,10 @@
       restartBtn.style.display = "block";
     }
 
+    function clearMessage() {
+        resultElement.textContent = "";
+    }
+
     submitBtn.addEventListener("click", () => {
       const userInput = diagnosisInput.value.trim().toLowerCase();
 
@@ -132,6 +136,7 @@
 
       if (existingGuesses.includes(userInput)) {
         resultElement.textContent = "You've already guessed that :p";
+	setTimeout(clearMessage, 2500);
         return; // Skip if guess already exists
       }
 
@@ -149,6 +154,7 @@
         endGame(true);
       } else {
         resultElement.textContent = "Incorrect, try again!";
+	setTimeout(clearMessage, 2500);
       }
 
       diagnosisInput.value = ""; // Clear input
@@ -160,6 +166,7 @@
             submitBtn.click();
         }
     });
+
 
     restartBtn.addEventListener("click", () => {
       timer = 60;
