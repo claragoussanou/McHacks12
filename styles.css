@@ -31,7 +31,7 @@ body {
 }
 
 .symptom-box, .input {
-      width: 90%;
+      width: 96%;
       justify-content: center;
 }
 
@@ -41,6 +41,7 @@ body {
       border: 1px solid #ddd;
       border-radius: 5px;
 }
+
 
 .timer, .symptom, .result {
       margin-bottom: 15px;
@@ -79,7 +80,6 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px dashed red;
   background-color: #001120;
   color: #dddddd;
   font-size: 20px;
@@ -92,6 +92,8 @@ h1 {
 
 .s2 {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #guessTracker {
