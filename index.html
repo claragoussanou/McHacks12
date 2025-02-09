@@ -275,11 +275,6 @@
       submitBtn.style.display = "none";
       restartBtn.style.display = "block";
       updateTimes();
-      // diagnosisInput.addEventListener("keydown", function(event) {
-	// if (event.key === "Enter") {
-            // event.preventDefault();
-	//}
-      //});
     }
 
     function clearMessage() {
@@ -320,17 +315,18 @@
 
 
     diagnosisInput.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && !gameOver) {
             submitBtn.click();
         }
     });
 
     starBtn.addEventListener("click", () => {
-  if (currentDiagnosis && !difficultySet.has(currentDiagnosis)) {
+  if (currentDiagnosis && !difficultySet.has(currentDiagnosis) && !gameOver) {
     difficultySet.add(currentDiagnosis); // Add to the set
     updateDifficultyList(); // Update the visual list
     starBtn.textContent = "⭐ Marked as Difficult";
     starBtn.disabled = true; // Disable after marking
+    endGame(false);
   }
 });
 
